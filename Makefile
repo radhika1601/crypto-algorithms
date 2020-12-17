@@ -4,16 +4,16 @@ CFLAGS=-g -fPIC -I${DIR} -fstack-protector-strong
 LDFLAGS=--shared
 
 
-all: railfence.o cryptomath.so
+all: railfence.o libcrypt.so
 
-railfence.o: railfence.cpp cryptomath.h
-	$(CXX) $(CFLAGS) railfence.cpp -o railfence.o -c
+railfence.o: src/railfence.cpp include/cryptomath.h include/railfence.h
+	$(CXX) $(CFLAGS) src/railfence.cpp -o railfence.o -c
 
-cryptomath.so: railfence.o
-	$(CXX) $(CFLAGS) $(LDFLAGS) $^ -o cryptomath.so
+libcrypt.so: railfence.o
+	$(CXX) $(CFLAGS) $(LDFLAGS) $^ -o libcrypt.so
 	rm *.o
 
 clean:
 	rm ./*.o &2>/dev/null
-	rm cryptomath.so &2>/dev/null
+	rm libcrypt.so &2>/dev/null
 
