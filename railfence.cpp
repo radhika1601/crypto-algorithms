@@ -3,8 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "cryptomath.h"
-
+#include "railfence.h"
 
 typedef struct row_details {
 
